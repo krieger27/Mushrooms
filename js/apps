@@ -1,0 +1,48 @@
+'use strict';
+
+const app = angular.module('mushrooms', []);
+
+app.controller('MushroomCtrl', function($scope, $q, $http) {
+  const printMushrooms = (mushroomsToShow) => {
+    $scope.mushroomList = mushroomsToShow;
+  };
+
+  getMushrooms()
+  .then( (mushroomData) => {
+    let mushroomArr = [];
+    for (let currentMushroom in mushroomData.data.mushrooms) {
+      mushroomArr.push(mushroomData.data.mushrooms[currentMushroom]);
+    }
+    printMushrooms(mushroomArr);
+  });
+
+  $scope.showPoisonous = () => {
+    const poisMushrooms = [];
+    getMushrooms()
+    .then( (mushroomData) => {
+      for(let currentMushroom in mushroomData.data.mushrooms) {
+        let mushroom = mushroomData.data.mushrooms[currentMushroom];
+        if (mushroom.edible !== true) {
+          poisMushrooms.push(mushroom);
+        }
+      }
+      printMushrooms(poisMushrooms);
+    });
+  };
+
+  $scope.showNonpoisonous = () => {
+    const nonpoisMushrooms = [];
+    getMushrooms()
+    .then( (mushroomData) => {
+      for(let currentMushroom in mushroomData.data.mushrooms) {
+        let mushroom = mushroomData.data.mushrooms[currentMushroom];
+        if (mushroom.edible === true) {
+          nonpoisMushrooms.push(mushroom);
+        }
+      }
+      printMushrooms(nonpoisMushrooms);
+    });
+  };
+
+
+});

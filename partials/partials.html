@@ -1,0 +1,7 @@
+<input type=text ng-model="shroomSearch">
+<input type="radio" name="edible" value="false" ng-model="poisonous"> Poisonous
+<input type="radio" name="edible" value="true" ng-model="poisonous"> Non-Poisonous
+<ul ng-repeat="shroom in shroomArr | filter: {description: shroomSearch, edible: poisonous}">
+  <li>{{shroom.name}}</li>
+  <li>{{shroom.description}}</li>
+</ul>

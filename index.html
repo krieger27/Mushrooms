@@ -8,20 +8,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
     <title>Mushrooms</title>
 </head>
-<body ng-app="mushrooms">
-    
-        <div ng-controller="MainController">
-        <input type="text" placeholder="search mushrooms" ng-model="mushroomName">
-        <input type="radio" ng-click="showPoisonous()">Poisonous
-        <input type="radio" ng-click="showNonpoisonous()">Non-poisonous
-        <ul ng-repeat="mushroom in mushroomList | filter: mushroomName">
-            <li>
-            <h2>{{mushroom.name}}</h2>
-            <p>{{mushroom.description}}</p>
-            </li>
-        </ul>
-        </div> 
+<body ng-app="mushroom">
+        
+        <h1>Mushrooms</h1>
+        <div ng-view></div>
 
-        <script src="app.js"></script>
+<!-- need to remember to keep checking scripts! -->
+        <script src="apps.js"></script>
+        <script src="factories/factory.js"></script>
+        <script src="controllers/MushroomCtrl.js"></script>
 </body>
 </html>

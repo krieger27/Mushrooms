@@ -4,13 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
     <title>Mushrooms</title>
 </head>
-<body>
-        <input ng-model="searchBy" value="Rma" type="radio" name="Poisonous">
-        <input ng-model="searchBy" value="Delivery" type="radio" name="Non-Poisonous">
+<body ng-app="mushrooms">
     
+        <div ng-controller="MainController">
+        <input type="text" placeholder="search mushrooms" ng-model="mushroomName">
+        <input type="radio" ng-click="showPoisonous()">Poisonous
+        <input type="radio" ng-click="showNonpoisonous()">Non-poisonous
+        <ul ng-repeat="mushroom in mushroomList | filter: mushroomName">
+            <li>
+            <h2>{{mushroom.name}}</h2>
+            <p>{{mushroom.description}}</p>
+            </li>
+        </ul>
+        </div> 
+
+        <script src="app.js"></script>
 </body>
 </html>
